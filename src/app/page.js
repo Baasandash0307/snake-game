@@ -95,10 +95,10 @@ export default function Home() {
       </div>
 
       <div className="flex gap-4 justify-center mt-10">
-        {/* <button onClick={() => setDirection("up")}>up</button>
+        <button onClick={() => setDirection("up")}>up</button>
         <button onClick={() => setDirection("down")}>down</button>
         <button onClick={() => setDirection("right")}>right</button>
-        <button onClick={() => setDirection("left")}>left</button> */}
+        <button onClick={() => setDirection("left")}>left</button>
       </div>
     </div>
   );
