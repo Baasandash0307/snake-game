@@ -88,7 +88,7 @@ export default function Home() {
 
     if (tails.find((tail) => tail.left === newLeft && tail.top === newTop)) {
       alert("GAMEOVER");
-      location.reload();
+      resetGame()
     }
 
     setHead({ top: newTop, left: newLeft });
@@ -106,6 +106,13 @@ export default function Home() {
     const newFoodLeft = getRandomInt(board.width);
 
     setFood({ top: newFoodTop, left: newFoodLeft });
+  }
+
+  function resetGame() {
+    setHead({ top: 0, left: 0 });
+    setFood({ top: 5, left: 5 });
+    setDirection("right");
+    setTails([{ top: 0, left: 0 }, { top: 0, left: 0 }, { top: 0, left: 0 }]);
   }
 
   function getRandomInt(max) {
@@ -134,7 +141,7 @@ export default function Home() {
         }}
         className="mx-auto"
       >
-        {/* Chessboard Grid */}
+
         {Array.from({ length: board.width * board.height }).map((_, index) => {
           const row = Math.floor(index / board.width);
           const col = index % board.width;
@@ -191,10 +198,7 @@ export default function Home() {
 
 
       <div className="flex gap-4 justify-center mt-10">
-        <button onClick={() => setDirection("up")} className="text-[30px] border-solid border-[2px] bg-cyan-300 rounded-[15px] w-[130px]">up</button>
-        <button onClick={() => setDirection("down")} className="text-[30px] border-solid border-[2px] bg-cyan-300 rounded-[15px] 130px w-[130px]">down</button>
-        <button onClick={() => setDirection("right")} className="text-[30px] border-solid border-[2px] bg-cyan-300 rounded-[15px] 130px w-[130px]">right</button>
-        <button onClick={() => setDirection("left")} className="text-[30px] border-solid border-[2px] bg-cyan-300 rounded-[15px] 130px w-[130px]">left</button>
+        <button onClick={resetGame} className="text-[30px] border-solid border-[2px] bg-cyan-300 rounded-[15px] w-[130px]">Reset</button>
       </div>
     </div>
   );
