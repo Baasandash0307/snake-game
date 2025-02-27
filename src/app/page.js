@@ -7,8 +7,8 @@ import { useEventListener } from "usehooks-ts";
 const size = 20;
 
 const board = {
-  width: 30,
-  height: 30
+  width: 20,
+  height: 20
 };
 
 export default function Home() {
@@ -123,18 +123,72 @@ export default function Home() {
   return (
     <div>
       <h1 className="flex justify-center text-black-100">SNAKE</h1>
-      <div style={{ width: board.height * size, height: board.height * size }} className="relative bg-green-400 mx-auto">
-        <div style={{ top: head.top * size, left: head.left * size, width: size, height: size }} className="absolute bg-green-900"></div>
+      <div
+        style={{
+          width: board.width * size,
+          height: board.height * size,
+          display: "grid",
+          gridTemplateColumns: `repeat(${board.width}, ${size}px)`,
+          gridTemplateRows: `repeat(${board.height}, ${size}px)`,
+          position: "relative"
+        }}
+        className="mx-auto"
+      >
+        {/* Chessboard Grid */}
+        {Array.from({ length: board.width * board.height }).map((_, index) => {
+          const row = Math.floor(index / board.width);
+          const col = index % board.width;
+          const isDark = (row + col) % 2 === 0;
 
-        <div style={{ top: food.top * size, left: food.left * size, width: size, height: size }} className="absolute bg-red-500"></div>
+          return (
+            <div
+              key={index}
+              style={{ width: size, height: size }}
+              className={isDark ? "bg-green-400" : "bg-green-500"}
+            ></div>
+          );
+        })}
 
-        {
-          tails.map((tail, index) => (
-            <div key={`${tail.left}-${tail.top}-${index}`} style={{ top: tail.top * size, left: tail.left * size, width: size, height: size }} className="absolute bg-green-700"></div>
-          ))
-        }
 
+        <div
+          style={{
+            position: "absolute",
+            top: head.top * size,
+            left: head.left * size,
+            width: size,
+            height: size,
+          }}
+          className="bg-cyan-800"
+        ></div>
+
+
+        <div
+          style={{
+            position: "absolute",
+            top: food.top * size,
+            left: food.left * size,
+            width: size,
+            height: size,
+          }}
+          className="bg-red-500 rounded-full"
+        ></div>
+
+
+        {tails.map((tail, index) => (
+          <div
+            key={`${tail.left}-${tail.top}-${index}`}
+            style={{
+              position: "absolute",
+              top: tail.top * size,
+              left: tail.left * size,
+              width: size,
+              height: size,
+            }}
+            className="bg-cyan-700"
+          ></div>
+        ))}
       </div>
+
 
       <div className="flex gap-4 justify-center mt-10">
         <button onClick={() => setDirection("up")} className="text-[30px] border-solid border-[2px] bg-cyan-300 rounded-[15px] w-[130px]">up</button>
