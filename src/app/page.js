@@ -198,7 +198,7 @@ export default function Home() {
 
 
       <div className="flex gap-4 justify-center mt-10">
-        <button onClick={resetGame} className="text-[30px] border-solid border-[2px] bg-cyan-300 rounded-[15px] w-[130px]">Reset</button>
+        <button onClick={resetGame} className="text-[30px] bg-cyan-300 rounded-[10px] w-[130px]">Reset</button>
       </div>
     </div>
   );
