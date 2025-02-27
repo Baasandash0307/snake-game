@@ -88,7 +88,7 @@ export default function Home() {
 
     if (tails.find((tail) => tail.left === newLeft && tail.top === newTop)) {
       alert("GAMEOVER");
-      resetGame()
+      location.reload();
     }
 
     setHead({ top: newTop, left: newLeft });
@@ -141,7 +141,7 @@ export default function Home() {
         }}
         className="mx-auto"
       >
-
+        {/* Chessboard Grid */}
         {Array.from({ length: board.width * board.height }).map((_, index) => {
           const row = Math.floor(index / board.width);
           const col = index % board.width;
